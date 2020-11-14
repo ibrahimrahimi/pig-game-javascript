@@ -59,6 +59,9 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
         activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
         currentScore = 0;
         roundScore = 0;
+
+        document.querySelector('.player-0-panel').classList.toggle('active');
+        document.querySelector('.player-1-panel').classList.toggle('active');
     }
 
 });
