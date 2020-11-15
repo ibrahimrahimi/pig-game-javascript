@@ -48,20 +48,24 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
 
 var currentScore;
 document.querySelector('.btn-hold').addEventListener('click', function() {
-    currentScore = parseInt(document.querySelector('#score-' + activePlayer).textContent);
+    scores[activePlayer] += roundScore;
     if (currentScore >= 20) {
         alert(document.querySelector('#name-' + activePlayer).textContent + ' won the game!!!');
     } else {
 
-        document.querySelector('#score-' + activePlayer).textContent = currentScore + roundScore;
+        document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
     
-        document.querySelector('#current-' + activePlayer).textContent = 0;
         activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
-        currentScore = 0;
         roundScore = 0;
+        
+        document.querySelector('#current-0').textContent = 0;
+        document.querySelector('#current-1').textContent = 0;
+
 
         document.querySelector('.player-0-panel').classList.toggle('active');
         document.querySelector('.player-1-panel').classList.toggle('active');
+        document.querySelector('.dice').style.display = 'none';
+
     }
 
 });
