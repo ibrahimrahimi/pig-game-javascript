@@ -157,13 +157,13 @@ i {
     top: 180px;
     transform: translateX(-50%);
     height: 100px;
-    box-shadow: 0px 10px 60px rgba(0, 0, 0, 0.10);
+    box-shadow: 0px 10px 60px rgba(0, 0, 0, 0.15);
 }
 
 .winner {
     background-color: #f7f7f7;
 }
 .winner .player-name {
-    font-weight: 300;
+    font-weight: 600;
     color: #EB4D4D;
 }
