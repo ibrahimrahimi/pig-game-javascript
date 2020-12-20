@@ -3,24 +3,22 @@ var scores, roundScore, activePlayer, gamePlaying, sixCounter;
 init();
 
 document.querySelector('.dice').style.display = 'none';
-document.getElementById('score-0').textContent = 0;
-document.getElementById('current-0').textContent = 0;
-document.getElementById('score-1').textContent = 0;
-document.getElementById('current-1').textContent = 0;
 
 document.querySelector('.btn-roll').addEventListener('click', function() {
     if(gamePlaying) {
         var dice = Math.floor(Math.random() * 6) + 1;
     
         var diceDOM = document.querySelector('.dice');
-        console.log('dice::', dice);
         diceDOM.style.display = 'block';
+        console.log('active player score: ' + scores[activePlayer])
         diceDOM.src = 'img/dice-' + dice + '.png';      
         if (dice !== 1) {
             if (dice === 6) {
                 sixCounter += 1;
             }
             if (sixCounter >= 2) {
+                scores[activePlayer] = 0;
+                document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
                 nextPlayer()
             } else {
                 roundScore += dice;
@@ -30,7 +28,6 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
         else {
             nextPlayer();
         }
-        console.log('Six counter::', sixCounter);
     }
 });
 
@@ -39,7 +36,7 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
         scores[activePlayer] += roundScore;
         document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
 
-        if (scores[activePlayer] >= 200) {  
+        if (scores[activePlayer] >= 50) {  
             document.querySelector('#name-' + activePlayer).textContent = "Winner!";
             document.querySelector('.dice').style.display = 'none';
             document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
@@ -86,4 +83,4 @@ function init() {
     document.querySelector('.player-0-panel').classList.remove('active');
     document.querySelector('.player-1-panel').classList.remove('active');
     document.querySelector('.player-0-panel').classList.add('active');
-}
+} 
