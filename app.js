@@ -1,4 +1,4 @@
-var scores, roundScore, activePlayer, gamePlaying, sixCounter, winningPoint;
+var scores, roundScore, activePlayer, gamePlaying, sixCounter, winningPoint, finalPoint;
 
 init();
 
@@ -38,10 +38,15 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
 
 document.querySelector('.btn-hold').addEventListener('click', function() {
     if(gamePlaying) {
+        var userPoint = document.querySelector('.score-panel').value;
+        if(userPoint){
+            finalPoint = userPoint;
+        } else {
+            finalPoint = 100;
+        }
         scores[activePlayer] += roundScore;
         document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
-        console.log('Winnig point is :::::::::::', winningPoint);
-        if (scores[activePlayer] >= winningPoint) {  
+        if (scores[activePlayer] >= finalPoint || scores[activePlayer] >= winningPoint) {  
             document.querySelector('#name-' + activePlayer).textContent = "Winner!";
             document.querySelector('.dice1').style.display = 'none';
             document.querySelector('.dice2').style.display = 'none';
@@ -96,7 +101,7 @@ function init() {
 
 document.querySelector('.btn-set-point').addEventListener('click', function(){
     var userWinningPoint = prompt("Enter the wining point: "); 
-    if(userWinningPoint != null){
+    if(userWinningPoint){
         winningPoint = userWinningPoint;
     }
 });
